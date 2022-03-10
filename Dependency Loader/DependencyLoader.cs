@@ -15,12 +15,12 @@ namespace Dependency_Loader
     /// <remarks>
     /// Note that the loader will use the first assembly it finds that fits the criteria.
     /// </remarks>
-    public class DependedncyLoader
+    public class DependencyLoader
     {
         #region Properties
 
         /// <summary>
-        /// The <see cref="System.AppDomain"/> this <see cref="Dependency_Loader.DependedncyLoader"/> is working under.
+        /// The <see cref="System.AppDomain"/> this <see cref="Dependency_Loader.DependencyLoader"/> is working under.
         /// </summary>
         public AppDomain AppDomain { get; }
 
@@ -57,7 +57,7 @@ namespace Dependency_Loader
         #region Constructors
 
         /// <summary>
-        /// Constructs a <see cref="Dependency_Loader.DependedncyLoader"/> for the given <paramref name="appDomain"/> in the given 
+        /// Constructs a <see cref="Dependency_Loader.DependencyLoader"/> for the given <paramref name="appDomain"/> in the given 
         /// <paramref name="root"/> directory.
         /// </summary>
         /// <param name="appDomain">The appdomain to load the dependency assemblies into.</param>
@@ -65,7 +65,7 @@ namespace Dependency_Loader
         /// <param name="criteria">The criteria used to resolve assembies.</param>
         /// <exception cref="System.ArgumentNullException">When any of the given parameters are null.</exception>
         /// <exception cref="System.IO.DirectoryNotFoundException">When the given <paramref name="root"/> directory does not exist.</exception>
-        public DependedncyLoader(AppDomain appDomain, string root, ResolveCriteria criteria)
+        public DependencyLoader(AppDomain appDomain, string root, ResolveCriteria criteria)
         {
             #region Error Checking
 
@@ -101,14 +101,14 @@ namespace Dependency_Loader
 
 
         /// <summary>
-        /// Constructs a <see cref="Dependency_Loader.DependedncyLoader"/> for the <see cref="System.AppDomain.CurrentDomain"/> in the given 
+        /// Constructs a <see cref="Dependency_Loader.DependencyLoader"/> for the <see cref="System.AppDomain.CurrentDomain"/> in the given 
         /// <paramref name="root"/> directory.
         /// </summary>
         /// <param name="root">The root directory to search for dependencies in. All child directories are searched too.</param>
         /// <param name="criteria">The criteria used to resolve assembies.</param>
         /// <exception cref="System.ArgumentNullException">When any of the given parameters are null.</exception>
         /// <exception cref="System.IO.DirectoryNotFoundException">When the given <paramref name="root"/> directory does not exist.</exception>
-        public DependedncyLoader(string root, ResolveCriteria criteria)
+        public DependencyLoader(string root, ResolveCriteria criteria)
             : this(AppDomain.CurrentDomain, root, criteria)
         {
             //Do nothing.
@@ -125,7 +125,7 @@ namespace Dependency_Loader
         /// <returns>True if the loader was successfully started. False if it was already started.</returns>
         /// <remarks>
         /// Now whenever the <see cref="System.AppDomain.AssemblyResolve"/> event is fired, the 
-        /// <see cref="Dependency_Loader.DependedncyLoader.Root"/> directory is searched.
+        /// <see cref="Dependency_Loader.DependencyLoader.Root"/> directory is searched.
         /// </remarks>
         public bool Start()
         {
@@ -150,7 +150,7 @@ namespace Dependency_Loader
         /// <returns>True if the loader was successfully stopped. False if it wasn't started.</returns>
         /// <remarks>
         /// Now whenever the <see cref="System.AppDomain.AssemblyResolve"/> event is fired, the 
-        /// <see cref="Dependency_Loader.DependedncyLoader.Root"/> directory is no longer searched.
+        /// <see cref="Dependency_Loader.DependencyLoader.Root"/> directory is no longer searched.
         /// </remarks>
         public bool Stop()
         {

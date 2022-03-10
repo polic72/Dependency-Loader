@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Dependency_Loader
 {
     /// <summary>
-    /// Represents the criteria used when resolving assemblies in <see cref="Dependency_Loader.DependedncyLoader"/>.
+    /// Represents the criteria used when resolving assemblies in <see cref="Dependency_Loader.DependencyLoader"/>.
     /// </summary>
     [Flags]
     public enum ResolveCriteria
