@@ -28,7 +28,7 @@ namespace Dependency_Tester
                 Console.WriteLine("Running test...\n\n");
 
 
-                DependedncyLoader loader = new DependedncyLoader(args[1], ResolveCriteria.Name);
+                DependedncyLoader loader = new DependedncyLoader(args[1], ResolveCriteria.Name | ResolveCriteria.Version);
 
                 loader.Start();
 

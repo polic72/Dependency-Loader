@@ -49,12 +49,6 @@ namespace Dependency_Loader
 
 
         /// <summary>
-        /// The regex used to parse assembly name information.
-        /// </summary>
-        protected static readonly Regex assemblyName_regex = new Regex(@"(.+), Version=(.+), Culture=(.+), PublicKeyToken=(.+)", RegexOptions.Compiled);
-
-
-        /// <summary>
         /// The assembly names cached based on file-path. This will dramatically improve performance.
         /// </summary>
         protected Dictionary<string, AssemblyName> cached_assemblyNames;
@@ -126,7 +120,7 @@ namespace Dependency_Loader
         #region Start/Stop
 
         /// <summary>
-        /// Starts this dependency loader.
+        /// Starts this dependency loader. Caches the info of all assemblies in root after the first run.
         /// </summary>
         /// <returns>True if the loader was successfully started. False if it was already started.</returns>
         /// <remarks>
@@ -151,7 +145,7 @@ namespace Dependency_Loader
 
 
         /// <summary>
-        /// Stops this dependency loader. This is entirely optional, feel free to make this object then forget about it.
+        /// Stops this dependency loader. Clears the cached assembly information.
         /// </summary>
         /// <returns>True if the loader was successfully stopped. False if it wasn't started.</returns>
         /// <remarks>
@@ -167,6 +161,10 @@ namespace Dependency_Loader
 
 
             AppDomain.AssemblyResolve -= AssemblyResolve;
+
+
+            cached_assemblyNames.Clear();
+
 
             started = false;
 
